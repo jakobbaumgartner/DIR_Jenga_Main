@@ -1,0 +1,64 @@
+zazeni app
+zazeni arduino
+zazeni socket
+zazeni kamera
+zazeni button
+
+    choose mode:
+        mode = x
+
+        mode1 - player vs game
+            get table
+            game = 1
+            while(game ==1)
+                robot - make move
+                    gets table
+                    calculates favourites
+                    gets number of tries = 0
+
+                    while(try == 1):
+                        push(block, force_01) - return [0 if next one, 1 if succesful, 2 potentionally thumbled, 3 if error of some kind]
+                        numberoftries++
+
+                        if numbertoobig
+                            - manual imput of block, with force 1
+
+                player confirm end of move - terminal or button - set game
+
+                if button - > game = 1 else exit 
+
+        mode2 - p v p 
+            while(game == 1):
+                gettable
+                print table in terminal
+                player chooses
+                
+                if playerchooses == end
+                    game 0
+
+
+
+
+
+push
+    push the block
+    loopcounter = 0
+    looptrue = 1
+    loop (loop true):
+    if loopcounter < maxcount:
+            check if good - send on ip stop if not good
+                -> only in first n seconds, after that it is too little too late
+
+        listen for answer - socket.recv
+
+        delay(10ms)
+
+
+        if answer yumi tells stop it breaks loop
+
+    wait for answer: return 
+        0 if stopped before certain loop number
+        1 if stopped with yumi finished
+        2 if stopped too late 
+        3 some error
+
