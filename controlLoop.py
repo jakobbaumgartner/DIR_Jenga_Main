@@ -1,3 +1,14 @@
+#code files
+import socket  
+import settingsFile     
+import yumiConnection
+import vision.cameraConnection as cameraConnection
+
+# dependencies
+import numpy as np
+import cv2
+# import imutils
+
 setInput = ''
 socketStatus = 'unknown'
 sensorStatus = 'unknown'
@@ -6,8 +17,22 @@ buttonStatus = 'unknown'
 
 # Start all modules here:
 
+    # Start Camera:
+
+cam1 = cameraConnection.startCamera(1)
+cam2 = cameraConnection.startCamera(2)
+cameraStatus = str(cam1) + ', ' + str(cam2)
+
+
+    # Start Yumi Connection:
+
+yumi = yumiConnection.startSocket(settingsFile.yumi_IP, settingsFile.yumi_port)
+socketStatus = settingsFile.yumi_IP + ', ' + str(settingsFile.yumi_port)
+
 
             # TO ADD.
+
+    # Start Arduino
 
 
 
@@ -43,7 +68,7 @@ while ( setInput != 'exit'):
             # This is the actual program loop, it will keep running until the game is finished.
             print('loop')
 
-
+            # TO ADD.
 
 
 
