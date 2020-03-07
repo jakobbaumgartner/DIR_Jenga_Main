@@ -1,14 +1,17 @@
 #code files
-import socket  
+
 import settingsFile     
 import yumiConnection
 import vision.cameraConnection as cameraConnection
+import vision.recognizer as recognizer
 
 # dependencies
 import numpy as np
 import cv2
 import threading
 import queue
+import time
+import socket
 # import imutils
 
 # shared memory for threads
@@ -29,11 +32,13 @@ buttonStatus = 'unknown'
     # ---------------------------------------------------------------------------------------
     # Start Camera:
 
-camera = threading.Thread(target=cameraConnection.startCameras, args=(q,), daemon=True)
+camera = threading.Thread(target=cameraConnection.startCameras, args=(q,'testing'), daemon=True)
 
 camera.start()
 camstatus1 = q.get()[0]
 camstatus2 = q.get()[3]
+cameraImage1 =q.get()[1]  # to get image from camera1
+cameraImage2 = q.get()[2]   # to get image from camera2
 cameraStatus = '  ' + str(camstatus1)+ '  ' + str(camstatus2)
 
 if (camstatus1 == False or camstatus2  == False): 
@@ -73,6 +78,10 @@ print('Camera status: ' + str(cameraStatus))
 print('Button status: ' + str(buttonStatus))
 
 print('----------------------------------------------------------\n')
+
+
+
+
 
 setInput = input('Please set input: ')
 
