@@ -7,9 +7,15 @@ import vision.cameraConnection as cameraConnection
 # dependencies
 import numpy as np
 import cv2
+import threading
+import queue
 # import imutils
 
-setInput = ''
+# shared memory for threads
+q = queue.Queue()
+
+
+setInput = 'not set'
 socketStatus = 'unknown'
 sensorStatus = 'unknown'
 cameraStatus = 'unknown'
@@ -17,31 +23,50 @@ buttonStatus = 'unknown'
 
 # Start all modules here:
 
+
+
+
+    # ---------------------------------------------------------------------------------------
     # Start Camera:
 
-cam1 = cameraConnection.startCamera(1)
-cam2 = cameraConnection.startCamera(2)
-cameraStatus = str(cam1) + ', ' + str(cam2)
+camera = threading.Thread(target=cameraConnection.startCameras, args=(q,), daemon=True)
+
+camera.start()
+camstatus1 = q.get()[0]
+camstatus2 = q.get()[3]
+cameraStatus = '  ' + str(camstatus1)+ '  ' + str(camstatus2)
+
+if (camstatus1 == False or camstatus2  == False): 
+    cameraStatus  += '   ERROR!'
 
 
+    # ---------------------------------------------------------------------------------------
+
+    # ---------------------------------------------------------------------------------------
     # Start Yumi Connection:
 
-yumi = yumiConnection.startSocket(settingsFile.yumi_IP, settingsFile.yumi_port)
-socketStatus = settingsFile.yumi_IP + ', ' + str(settingsFile.yumi_port)
+# yumi = yumiConnection.startSocket(settingsFile.yumi_IP, settingsFile.yumi_port)  -->      WHEN CONNECTED TURN OFF!
+# socketStatus = settingsFile.yumi_IP + ', ' + str(settingsFile.yumi_port)
+
+socketStatus = 'Turned off.'
+    # ---------------------------------------------------------------------------------------
 
 
-            # TO ADD.
-
+    # ---------------------------------------------------------------------------------------
     # Start Arduino
 
+                # TO ADD.
 
+    # ---------------------------------------------------------------------------------------
+
+    
 
 
 
 print('\n \n----------------------------------------------------------')
 
-print('YENGA v 0.1')
-print('\n Program initiated:')
+print(' YENGA v 0.1')
+print('\nProgram initiated:')
 print('Socket status: ' + str(socketStatus))
 print('Sensor status: ' + str(sensorStatus))
 print('Camera status: ' + str(cameraStatus))
@@ -82,7 +107,10 @@ while ( setInput != 'exit'):
         print('----------------------------------------------------------\n')
         print('\nWelcome to player - vs - player !')
         print('\nThis is a player vs player mode, with a twist. Players take turns in choosing which block robot pulls out.\n')
-
+        
+ 
+        
 
     setInput = input('\nPlease set input: ')
+
 
