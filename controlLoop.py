@@ -1,7 +1,7 @@
 #code files
 
-import settingsFile     
-import yumiConnection
+import settingsFile                                     # FIX THIS, IT SHOULD BE JSON FILE!!!!
+import yumi.yumiConnection as yumiConnection
 import vision.cameraConnection as cameraConnection
 import vision.recognizer as recognizer
 
