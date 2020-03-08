@@ -188,6 +188,8 @@ def simpleArray (array, width, maxRowOffset):
 	print('\n \n')
 	print(simpleTower)
 
+	return simpleArrayReturn
+
 
 def printImages(image, windowname, dots):
 	# image is source photo, dots are coordinates of points in array
