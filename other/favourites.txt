@@ -1,0 +1,6 @@
+if block is in mid row you really dont care about masspoint 
+
+if block is left or right you want massppoint to be off it 
+    masspointdisplacementfrommid 
+
+    if desno več, bo številka večja, če levo več bo večja na levi

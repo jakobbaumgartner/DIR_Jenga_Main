@@ -101,6 +101,7 @@ while ( setInput != 'exit'):
             
             # This is the actual program loop, it will keep running until the game is finished.
             print('loop')
+            
 
             # TO ADD.
 

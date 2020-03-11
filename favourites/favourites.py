@@ -33,6 +33,8 @@ class favourites:
 	def massPointDisplacementFromMid (self, array, block):
 
 		# tells how is mass arranged from middle block or center of row
+		# if there are many more blocks on right, will the number be positive and close to 1
+		# if many more on left, number will be close to -1
 
 		LMR = self.numberOfBlocksAbove(self, array, block)
 
@@ -110,6 +112,8 @@ class favourites:
 
 
 	def level_bottom (self, block, array):
+		# just returns level of block
+
 		return block[1]
 
 	
@@ -143,7 +147,7 @@ class favourites:
 		single_under_bottomlevel = []
 		single_under_risedlevel = []
 
-		#we only keep levels under the one we are looking at
+		# we only keep levels under the one we are looking at
 
 		if (bottomblock):	
 			for element in bottomlevelside:
@@ -173,8 +177,8 @@ class favourites:
 			if ( (self.block_level(self, risedlevelside, element))[1] == [0,1,0] ):
 				single_under_risedlevel.append(element[1])
 
-		single_under_bottomlevel.sort()
-		single_under_risedlevel.sort()
+		single_under_bottomlevel.sort(reverse=True)
+		single_under_risedlevel.sort(reverse=True)
 
 		firstsingulbottomside = single_under_bottomlevel[0]
 		firstsingulrisedlevel = single_under_risedlevel[0]
